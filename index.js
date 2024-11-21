@@ -4,7 +4,7 @@ const cors = require('cors');  // Importar cors
 const path = require('path');
 
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 
 // Middleware para permitir CORS
 app.use(cors());  // Esto permitirá solicitudes desde cualquier origen
