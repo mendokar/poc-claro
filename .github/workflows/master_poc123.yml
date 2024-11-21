@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - poc-claro
+name: Build and deploy Node.js app to Azure Web App - poc123
 
 on:
   push:
@@ -19,16 +19,15 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
+          node-version: '18.x'
 
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip -r release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -43,7 +42,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write
 
     steps:
       - name: Download artifact from build job
@@ -57,15 +56,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D25EFD0919B24C658AE8F2CF631E8E9C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_346842CFD1FD4DA49CE41A7E19395514 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FD4B268509F24663872F75497497E801 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B43A6DA5850E4B54973BD2166F914D21 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DEFC076BEFF54B6DA7CE3CEE34B8E4C4 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EFA82E2C9B474B7EB1432D5833113154 }}
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'poc-claro'
+          app-name: 'poc123'
           slot-name: 'Production'
           package: .
-          
