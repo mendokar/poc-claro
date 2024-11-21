@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/86a4d824-b8b3-4eaa-9a8d-8c86279a90c6/resourceGroups/appsvc_linux_centralus_premium/providers/Microsoft.Web/sites/claropocs",
+    "appService.deploySubpath": ".",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}
